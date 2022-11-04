@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
+using System.IO;
 
 public class MusicManager : MonoBehaviour
 {
@@ -26,7 +28,8 @@ public class MusicManager : MonoBehaviour
     
     private int _currentTrackNumber = 0;
 
-    private string _errorMessage = "";
+    private AudioClip _addableClip;
+    private string _newClipPath;
     
     private void Awake()
     {
@@ -141,8 +144,7 @@ public class MusicManager : MonoBehaviour
     {
         if (trackID == _currentTrackNumber)
         {
-            _errorMessage = "This track cannot be removed\n:(";
-            DisplayError();
+            DisplayError("This track cannot be removed\n:(");
             return 0;
         }
         _tracks.RemoveAt(trackID);
@@ -152,9 +154,9 @@ public class MusicManager : MonoBehaviour
         return 1;
     }
 
-    private void DisplayError()
+    public void DisplayError(string message)
     {
-        _warningText.text = _errorMessage;
+        _warningText.text = message;
         _warningObject.SetActive(true);
         
         Invoke(nameof(DisableWarning), 2);
@@ -193,6 +195,35 @@ public class MusicManager : MonoBehaviour
         
         UpdateTracksNumbers();
         RedrawBlocks();
+    }
+
+    public IEnumerator LoadAudio(string path)
+    {
+        WWW request = GetAudioFromFile(path);
+        yield return request;
+
+        _addableClip = request.GetAudioClip(true, false);
+        _addableClip.name = Path.GetFileNameWithoutExtension(path);
+        AddCustomClip();
+
+        _addableClip = null;
+    }
+
+    private void AddCustomClip()
+    {
+        _tracks.Add(_addableClip);
+        
+        InitializeNewBlock(_tracks.Count-1, 15600);
+        
+        UpdateTracksNumbers();
+    }
+
+    private WWW GetAudioFromFile(string path)
+    {
+        string audioToLoad = path;
+        WWW request = new WWW(audioToLoad);
+        
+        return request;
     }
 
     private void RedrawBlocks()

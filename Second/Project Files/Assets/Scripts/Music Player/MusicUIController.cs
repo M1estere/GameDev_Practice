@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,9 @@ public class MusicUIController : MonoBehaviour
 
     [SerializeField] private AudioSource _mainSource;
     [Space(12)]
+    
+    [Header("Path Input Control")]
+    [SerializeField] private TMPro.TMP_InputField _pathInputField;
     
     [Header("Play and Pause Buttons Setup")]
     [SerializeField] private GameObject _playButton;
@@ -116,5 +120,53 @@ public class MusicUIController : MonoBehaviour
     public void ChangeVolume(float value)
     {
         _mainSource.volume = value;
+    }
+
+    public void ReceivePath(string path)
+    {
+        _pathInputField.text = "";
+
+        if (Directory.Exists(path))
+        {
+            bool noMusic = true;
+            DirectoryInfo d = new DirectoryInfo(path);
+
+            foreach (var file in d.GetFiles("*.wav"))
+            {
+                string sPath = $"{path}\\{file.Name}";
+
+                StartCoroutine(_musicManager.LoadAudio(sPath));
+                noMusic = false;
+            }
+
+            foreach (var file in d.GetFiles("*.mp3"))
+            {
+                string sPath = $"{path}\\{file.Name}";
+
+                StartCoroutine(_musicManager.LoadAudio(sPath));
+                noMusic = false;
+            }
+
+            if (noMusic == true)
+            {
+                _musicManager.DisplayError("No music in this directory\n:(");
+                return;
+            }
+
+            return;
+        }
+        
+        if (path.Length == 0 || File.Exists(path) == false)
+        {
+            _musicManager.DisplayError("Enter a correct path!");
+            return;
+        }
+        
+        if (path.EndsWith(".mp3") == false && path.EndsWith(".wav") == false)
+        {
+            _musicManager.DisplayError("File is not supported!\n:(");
+            return;
+        }
+        StartCoroutine(_musicManager.LoadAudio(path));
     }
 }

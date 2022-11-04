@@ -8,14 +8,6 @@ public class Draw : MonoBehaviour
 
     private List<Vector2> _points;
 
-    private void SetPoint(Vector2 point)
-    {
-        _points.Add(point);
-
-        _lineRenderer.positionCount = _points.Count;
-        _lineRenderer.SetPosition(_points.Count - 1, point);
-    }
-
     public void UpdateLine(Vector2 position)
     {
         if (_points == null)
@@ -26,8 +18,14 @@ public class Draw : MonoBehaviour
         }
 
         if (Vector2.Distance(_points.Last(), position) > .1f)
-        {
             SetPoint(position);
-        }
+    }
+    
+    private void SetPoint(Vector2 point)
+    {
+        _points.Add(point);
+
+        _lineRenderer.positionCount = _points.Count;
+        _lineRenderer.SetPosition(_points.Count - 1, point);
     }
 }
