@@ -5,7 +5,7 @@
 #
 
 ### Music Player
-![Music Player](https://user-images.githubusercontent.com/58213582/199944820-388d7b43-bb21-499a-937d-853ba80c0a4c.png)
+![Music Player](https://user-images.githubusercontent.com/58213582/200067319-1ea7b210-6def-4e08-9ee2-f62cc49bee16.png)
 
 ### Draw Board
-![Draw](https://user-images.githubusercontent.com/58213582/199944891-99be88e4-ed69-411e-8fbd-00ae7dc3dac5.png)
+![Draw Board](https://user-images.githubusercontent.com/58213582/200067340-75305dac-4028-4322-93f5-d2efb9fbc0c0.png)
