@@ -8,6 +8,8 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+    [HideInInspector] public bool IsEraser = false;
+    
     [SerializeField, Tooltip("To control local UI")] private LocalUI _localUI;
     
     [Header("Screenshot")] 
@@ -38,6 +40,8 @@ public class UIManager : MonoBehaviour
     
     [SerializeField] private TMP_InputField _pathInputField;
 
+    private List<LineRenderer> _eraserLines = new List<LineRenderer>();
+    
     private List<string> _paths = new List<string>();
 
     private string _currentDirectory;
@@ -62,23 +66,51 @@ public class UIManager : MonoBehaviour
         
         _widthSlider.value = width * 2;
     }
+
+    public void AddEraserLine(LineRenderer _renderer)
+    {
+        _eraserLines.Add(_renderer);
+    }
     
     public void ChangeBrushColor(Image image)
     {
+        IsEraser = false;
+        
         _linePrefab.startColor = image.color;
         _linePrefab.endColor = image.color;
         
         _localUI.UpdateBrushColour(image.color);
     }
 
+    public void ChangeBrushToEraser()
+    {
+        IsEraser = true;
+        Color colour = _screenshotCamera.backgroundColor;
+        
+        _linePrefab.startColor = colour;
+        _linePrefab.endColor = colour;
+    }
+    
     public void ChangeBgColor(Image image)
     {
         _camera.backgroundColor = image.color;
         _screenshotCamera.backgroundColor = image.color;
 
+        UpdateEraseColours(image.color);
         _localUI.UpdateBgColour(image.color);
     }
 
+    private void UpdateEraseColours(Color colour)
+    {
+        foreach (var t in _eraserLines)
+        {
+            t.startColor = colour;
+            t.endColor = colour;
+        }
+        _linePrefab.startColor = colour;
+        _linePrefab.endColor = colour;
+    }
+    
     public void ChangeBrushWidth(float width)
     {
         width /= 2;

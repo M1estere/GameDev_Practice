@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class LineManager : MonoBehaviour
 {
+    [SerializeField] private UIManager _manager;
     [SerializeField, Tooltip("For looking for mouse")] private Camera _mainCamera;
     [Space(5)]
     
@@ -33,6 +34,7 @@ public class LineManager : MonoBehaviour
             _currentLayer++;
             
             _lineScript = newLine.GetComponent<Draw>();
+            if (_manager.IsEraser) _manager.AddEraserLine(newLine.GetComponent<LineRenderer>());
         }
 
         if (Input.GetMouseButtonUp(0))
