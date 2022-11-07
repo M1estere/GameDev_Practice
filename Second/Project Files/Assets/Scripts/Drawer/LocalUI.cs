@@ -19,6 +19,11 @@ public class LocalUI : MonoBehaviour
     {
         _colorImage.color = brushColor;
     }
+
+    public void ChangeUnderState(bool state)
+    {
+        _underColor.gameObject.SetActive(state);
+    }
     
     public void UpdateBgColour(Color bgColor)
     {

@@ -211,6 +211,9 @@ public class MusicManager : MonoBehaviour
 
     private void AddCustomClip()
     {
+        foreach (var t in _tracks)
+            if (t.name == _addableClip.name) return;
+        
         _tracks.Add(_addableClip);
         
         InitializeNewBlock(_tracks.Count-1, 15600);

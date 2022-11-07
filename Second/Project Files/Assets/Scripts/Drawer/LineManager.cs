@@ -10,11 +10,15 @@ public class LineManager : MonoBehaviour
     [Space(3)]
     
     [SerializeField] private Canvas _localUI;
+
+    private GameObject _lastLine;
     
     private LineRenderer _currentLineRenderer;
     private Draw _lineScript;
 
     private int _currentLayer;
+
+    private int _counter = 1;
     
     private void Awake()
     {
@@ -28,18 +32,39 @@ public class LineManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             var newLine = Instantiate(_linePrefab);
-
+            newLine.name = $"Line {_counter}";
+            
             _currentLineRenderer = _linePrefab.GetComponent<LineRenderer>();
             _currentLineRenderer.sortingOrder = _currentLayer;
             _currentLayer++;
             
             _lineScript = newLine.GetComponent<Draw>();
             if (_manager.IsEraser) _manager.AddEraserLine(newLine.GetComponent<LineRenderer>());
+            _counter++;
         }
 
         if (Input.GetMouseButtonUp(0))
+        {
+            _lastLine = _lineScript.gameObject;
+            
             _lineScript = null;
+        }
 
+        if ((Input.GetKey(KeyCode.RightControl) || Input.GetKey(KeyCode.LeftControl)) && Input.GetKeyDown(KeyCode.Z))
+        {
+            if (_lastLine != null)
+            {
+                Destroy(_lastLine);
+                _counter--;
+                
+                _lastLine = FindNewLine();
+            }
+            else
+            {
+                Debug.Log("Nothing to destroy!");
+            }
+        }
+        
         if (_lineScript != null)
         {
             var mousePosition = new Vector3
@@ -52,6 +77,11 @@ public class LineManager : MonoBehaviour
             var output = _mainCamera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, _mainCamera.nearClipPlane));
             _lineScript.UpdateLine(new Vector2(output.x, output.y));
         }
+    }
+
+    private GameObject FindNewLine()
+    {
+        return GameObject.Find($"Line {_counter - 1}");
     }
 
     private void ToggleLocalUI()

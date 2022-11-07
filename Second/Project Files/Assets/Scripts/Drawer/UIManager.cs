@@ -80,6 +80,8 @@ public class UIManager : MonoBehaviour
         _linePrefab.endColor = image.color;
         
         _localUI.UpdateBrushColour(image.color);
+        
+        _localUI.ChangeUnderState(true);
     }
 
     public void ChangeBrushToEraser()
@@ -89,6 +91,10 @@ public class UIManager : MonoBehaviour
         
         _linePrefab.startColor = colour;
         _linePrefab.endColor = colour;
+        
+        _localUI.UpdateBrushColour(Color.clear);
+        
+        _localUI.ChangeUnderState(false);
     }
     
     public void ChangeBgColor(Image image)
@@ -107,8 +113,12 @@ public class UIManager : MonoBehaviour
             t.startColor = colour;
             t.endColor = colour;
         }
-        _linePrefab.startColor = colour;
-        _linePrefab.endColor = colour;
+
+        if (IsEraser)
+        {
+            _linePrefab.startColor = colour;
+            _linePrefab.endColor = colour;
+        }
     }
     
     public void ChangeBrushWidth(float width)
