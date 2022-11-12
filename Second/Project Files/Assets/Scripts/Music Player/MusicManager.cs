@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using System.IO;
+using System.Linq;
 
 public class MusicManager : MonoBehaviour
 {
@@ -21,7 +22,11 @@ public class MusicManager : MonoBehaviour
     [Header("Main Audio Control")]
     [SerializeField] private AudioSource _source;
     [SerializeField] private List<AudioClip> _tracks = new List<AudioClip>();
-    [Space(7)]
+    [Space(7)] 
+    
+    [Header("Playlist Control")] 
+    [SerializeField] private GameObject _playlistInfoBlock;
+    [SerializeField] private GameObject _playlistBlockParent;
 
     private List<TrackBlock> _blocks = new List<TrackBlock>();
     private List<TrackBlock> _tempBlocks = new List<TrackBlock>();
@@ -30,6 +35,8 @@ public class MusicManager : MonoBehaviour
 
     private AudioClip _addableClip;
     private string _newClipPath;
+
+    private int _playlistCounter = 1;
     
     private void Awake()
     {
@@ -261,5 +268,38 @@ public class MusicManager : MonoBehaviour
         block.Init();
         
         _blocks.Add(block);
+    }
+
+    public void CreateNewPlaylist()
+    {
+        CreateNewPlaylistBlock();
+    }
+
+    private void CreateNewPlaylistBlock()
+    {
+        var obj = Instantiate(_playlistInfoBlock, _playlistBlockParent.transform.position, Quaternion.identity,
+            _playlistBlockParent.transform);
+
+        var block = obj.GetComponent<PlaylistBlock>();
+
+        block.MusicM = this;
+        block.Title = $"Playlist #{_playlistCounter}";
+        block.Tracks = _tracks.ToList();
+        
+        block.Init();
+        _playlistCounter++;
+    }
+    
+    public void ChangePlaylist(List<AudioClip> clips)
+    {
+        _tracks.Clear();
+        _tracks = clips.ToList();
+
+        for (int i = 0; i < _blocks.Count; i++)
+            _blocks[i].DeleteBlock();
+        _blocks.Clear();
+        
+        CreateTrackList();
+        SelectTrack(0);
     }
 }
