@@ -7,5 +7,7 @@ public class QueueParamsBlock : MonoBehaviour
     public void CreateNewPlaylist()
     {
         _musicM.CreateNewPlaylist();
+
+        _musicM.DisplayError("Playlist Saved!\n:)");
     }
 }

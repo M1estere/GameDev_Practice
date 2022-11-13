@@ -283,7 +283,7 @@ public class MusicManager : MonoBehaviour
         var block = obj.GetComponent<PlaylistBlock>();
 
         block.MusicM = this;
-        block.Title = $"Playlist #{_playlistCounter}";
+        block.Title = $"#{_playlistCounter}";
         block.Tracks = _tracks.ToList();
         
         block.Init();
