@@ -1,5 +1,5 @@
 # Third lab
-## Task: Music player and Draw board
+## Task: C# interfaces, events, builder pattern
 
 ### Interfaces implementation
 ![Interfaces](https://user-images.githubusercontent.com/58213582/205451130-aeb9bb0c-d8a9-4efa-a804-bbac92679f8a.png)
