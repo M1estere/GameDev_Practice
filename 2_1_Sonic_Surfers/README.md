@@ -1,5 +1,5 @@
 # Sonic Surfers
-## Task: Create 3-line endless runner with frogs jumping in your direction
+## Task: Create 3-line endless runner with frogs jumping in your direction (DOTween)
 * `Project Files` - folder with all the source files for the project
 * `Game Build` - folder, containing the game build for PC (Windows)
 
