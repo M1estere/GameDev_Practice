@@ -5,7 +5,7 @@ public class PlayerInput : MonoBehaviour
 {
     private enum ControlType { Keyboard, Joystick }
 
-    [SerializeField] private ControlType controlType;
+    [SerializeField] private ControlType _controlType;
     [Space(5)]
     
     [SerializeField] private Joystick _controlJoystick;
@@ -20,14 +20,14 @@ public class PlayerInput : MonoBehaviour
     private void Update()
     {
         Vector3 moveVector = Vector3.zero;
-        if (controlType == ControlType.Keyboard)
+        if (_controlType == ControlType.Keyboard)
         {
             float horizontalInput = Input.GetAxis(HORIZONTAL);
             float verticalInput = Input.GetAxis(VERTICAL);
 
             moveVector = new Vector3(horizontalInput, 0, verticalInput);
         }
-        else if (controlType == ControlType.Joystick)
+        else if (_controlType == ControlType.Joystick)
         {
             float horizontalInput = _controlJoystick.Horizontal;
             float verticalInput = _controlJoystick.Vertical;

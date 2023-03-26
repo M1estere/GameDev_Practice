@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class RotationTowardsEnemy : MonoBehaviour
 {
-    [SerializeField, Range(10, 35)] private float rotateSpeed;
+    [SerializeField, Range(10, 35)] private float _rotateSpeed;
     [Space(5)]
     
-    [SerializeField] private float searchRadius = 15f;
+    [SerializeField] private float _searchRadius = 15f;
     
     private Transform _target;
     
@@ -21,7 +21,7 @@ public class RotationTowardsEnemy : MonoBehaviour
         
         Vector3 direction = _target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(direction);
-        Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * rotateSpeed).eulerAngles;
+        Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * _rotateSpeed).eulerAngles;
         
         transform.rotation = Quaternion.Euler (0f, rotation.y, 0f);
     }
@@ -42,7 +42,7 @@ public class RotationTowardsEnemy : MonoBehaviour
             }
         }
         
-        if (nearestEnemy != null && shortestDist <= searchRadius)
+        if (nearestEnemy != null && shortestDist <= _searchRadius)
             _target = nearestEnemy.transform;
         else
             _target = null;

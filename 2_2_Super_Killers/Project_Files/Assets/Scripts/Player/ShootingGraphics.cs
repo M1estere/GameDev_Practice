@@ -5,18 +5,18 @@ using UnityEngine;
 public class ShootingGraphics : MonoBehaviour
 {
     [Header("Graphics Setup")]
-    [SerializeField] private GameObject shootingSystem;
-    [SerializeField] private GameObject impactSystem;
-    [SerializeField] private TrailRenderer bulletTrail;
-    [SerializeField] private Transform bulletSpawnPoint;
+    [SerializeField] private GameObject _shootingSystem;
+    [SerializeField] private GameObject _impactSystem;
+    [SerializeField] private TrailRenderer _bulletTrail;
+    [SerializeField] private Transform _bulletSpawnPoint;
     [Space(5)]
     
-    [SerializeField] private float trailSpeedMultiplier = 13f;
+    [SerializeField] private float _trailSpeedMultiplier = 13f;
     
     public void Shoot(RaycastHit hit)
     {
-        GameObject particles = Instantiate(shootingSystem, bulletSpawnPoint.position, Quaternion.identity);
-        TrailRenderer trail = Instantiate(bulletTrail, bulletSpawnPoint.position, Quaternion.identity);
+        GameObject particles = Instantiate(_shootingSystem, _bulletSpawnPoint.position, Quaternion.identity);
+        TrailRenderer trail = Instantiate(_bulletTrail, _bulletSpawnPoint.position, Quaternion.identity);
 
         StartCoroutine(SpawnTrail(trail, hit));
         
@@ -31,13 +31,13 @@ public class ShootingGraphics : MonoBehaviour
         while (time < 1)
         {
             trail.transform.position = Vector3.Lerp(startPosition, hit.point, time);
-            time += (Time.deltaTime / trail.time) * trailSpeedMultiplier;
+            time += (Time.deltaTime / trail.time) * _trailSpeedMultiplier;
 
             yield return null;
         }
 
         trail.transform.position = hit.point;
-        GameObject particles = Instantiate(impactSystem, hit.point, Quaternion.LookRotation(hit.normal));
+        GameObject particles = Instantiate(_impactSystem, hit.point, Quaternion.LookRotation(hit.normal));
         
         Destroy(trail.gameObject, trail.time);
         Destroy(particles, 1);

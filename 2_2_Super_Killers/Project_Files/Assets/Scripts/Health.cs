@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField, Range(0, 100)] private float maxHealth;
+    [SerializeField, Range(0, 100)] private float _maxHealth;
     private float _currentHealth;
 
     private UiUpdater _healthUI;
     
     private void Awake()
     {
-        _currentHealth = maxHealth;
+        _currentHealth = _maxHealth;
         if (TryGetComponent(out PlayerMovement playerMovement))
             _healthUI = FindObjectOfType<UiUpdater>();
         
-        if (_healthUI != null) _healthUI.SetUI(_currentHealth, maxHealth);
+        if (_healthUI != null) _healthUI.SetUI(_currentHealth, _maxHealth);
     }
 
     public bool TakeDamage(float damage)
@@ -21,7 +21,7 @@ public class Health : MonoBehaviour
         if (_currentHealth <= 0) return false;
         _currentHealth -= damage;
 
-        if (_healthUI != null) _healthUI.SetUI(_currentHealth, maxHealth);
+        if (_healthUI != null) _healthUI.SetUI(_currentHealth, _maxHealth);
         if (_currentHealth <= 0)
         {
             Death();

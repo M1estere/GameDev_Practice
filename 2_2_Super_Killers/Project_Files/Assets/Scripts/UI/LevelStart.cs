@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class LevelStart : MonoBehaviour
 {
-    [SerializeField] private TMPro.TMP_Text timerText;
+    [SerializeField] private TMPro.TMP_Text _timerText;
     
     private void Start() => StartCoroutine(Launch());
 
@@ -11,16 +11,16 @@ public class LevelStart : MonoBehaviour
     {
         int counter = 0;
         Time.timeScale = 0;
-        timerText.gameObject.SetActive(true);
+        _timerText.gameObject.SetActive(true);
         
         while (counter < 3)
         {
-            timerText.SetText($"{3 - counter}");
+            _timerText.SetText($"{3 - counter}");
             counter++;
             yield return new WaitForSecondsRealtime(1);
         }
         
-        timerText.gameObject.SetActive(false);
+        _timerText.gameObject.SetActive(false);
         Time.timeScale = 1;
 
         gameObject.SetActive(false);

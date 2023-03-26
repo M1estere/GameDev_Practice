@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class LevelController : MonoBehaviour
 {
-    [SerializeField] private Level levelConfiguration;
-    [SerializeField] private Spawner spawner;
+    [SerializeField] private Level _levelConfiguration;
+    [SerializeField] private Spawner _spawner;
 
     private UiUpdater _updater;
     private float _lastSpawnTime;
@@ -15,12 +15,12 @@ public class LevelController : MonoBehaviour
         KillCounter.TotalEnemies = 0;
         _updater = FindObjectOfType<UiUpdater>();
         
-        _updater.UpdateWave(_counter + 1, levelConfiguration.WavesAmount);
+        _updater.UpdateWave(_counter + 1, _levelConfiguration.WavesAmount);
     }
 
     private void Start()
     {
-        foreach (int enemiesAmount in levelConfiguration.EnemiesPerWave)
+        foreach (int enemiesAmount in _levelConfiguration.EnemiesPerWave)
             KillCounter.TotalEnemies += enemiesAmount;
         
         SpawnWave();
@@ -28,9 +28,9 @@ public class LevelController : MonoBehaviour
 
     private void Update()
     {
-        if (_counter >= levelConfiguration.WavesAmount) CheckWaves();
-        if (_counter > levelConfiguration.WavesAmount - 1) return;
-        if (Time.time > levelConfiguration.WavesTime[_counter] + _lastSpawnTime) 
+        if (_counter >= _levelConfiguration.WavesAmount) CheckWaves();
+        if (_counter > _levelConfiguration.WavesAmount - 1) return;
+        if (Time.time > _levelConfiguration.WavesTime[_counter] + _lastSpawnTime) 
         {
             _lastSpawnTime = Time.time;
             SpawnWave();
@@ -45,9 +45,9 @@ public class LevelController : MonoBehaviour
 
     private void SpawnWave()
     {
-        spawner.Spawn(levelConfiguration.EnemiesPerWave[_counter]);
+        _spawner.Spawn(_levelConfiguration.EnemiesPerWave[_counter]);
         _counter++;
         
-        _updater.UpdateWave(_counter, levelConfiguration.WavesAmount);
+        _updater.UpdateWave(_counter, _levelConfiguration.WavesAmount);
     }
 }

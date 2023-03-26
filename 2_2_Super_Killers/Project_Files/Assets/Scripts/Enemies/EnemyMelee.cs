@@ -4,11 +4,11 @@ using UnityEngine;
 public class EnemyMelee : Enemy
 {
     [Header("Speed Control")]
-    [SerializeField, Range(1, 10)] private float moveSpeed;
-    [SerializeField, Range(15, 45)] private float turnSpeed;
+    [SerializeField, Range(1, 10)] private float _moveSpeed;
+    [SerializeField, Range(15, 45)] private float _turnSpeed;
     [Space(5)]
     
-    [SerializeField] private float attackDelay;
+    [SerializeField] private float _attackDelay;
     private float _lastAttackTime;
     
     private Transform _playerTransform;
@@ -29,7 +29,7 @@ public class EnemyMelee : Enemy
         }
         else
         {
-            if (Time.time > attackDelay + _lastAttackTime) 
+            if (Time.time > _attackDelay + _lastAttackTime) 
             {
                 _lastAttackTime = Time.time;
                 Attack();
@@ -41,14 +41,14 @@ public class EnemyMelee : Enemy
 
     public override void Movement()
     {
-        transform.position = Vector3.MoveTowards(transform.position, _playerTransform.position, moveSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, _playerTransform.position, _moveSpeed * Time.deltaTime);
     }
 
     public override void RotateTowardsPlayer()
     {
         var dir = _playerTransform.position - transform.position;
         var lookRotation = Quaternion.LookRotation(dir);
-        var rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+        var rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * _turnSpeed).eulerAngles;
         
         transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }

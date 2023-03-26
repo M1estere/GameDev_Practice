@@ -3,29 +3,28 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [Header("Choose Level Menu")]
-    [SerializeField] private GameObject levels;
+    [SerializeField] private GameObject _levels;
     [Space(5)]
     
     [Header("Pages")]
-    [SerializeField] private GameObject mainPage;
-    [SerializeField] private GameObject aboutPage;
+    [SerializeField] private GameObject _mainPage;
+    [SerializeField] private GameObject _aboutPage;
     [Space(5)]
     
-    [SerializeField] private TMPro.TMP_Text currentGunText;
+    [SerializeField] private TMPro.TMP_Text _currentGunText;
 
-    public void OpenLevels() => levels.SetActive(true);
+    public void OpenLevels() => _levels.SetActive(true);
 
     public void OpenAboutPage()
     {
-        mainPage.SetActive(false);
-        aboutPage.SetActive(true);
+        _mainPage.SetActive(false);
+        _aboutPage.SetActive(true);
     }
 
     public void LeaveAboutPage()
     {
-        mainPage.SetActive(true);
-        aboutPage.SetActive(false);
+        _mainPage.SetActive(true);
+        _aboutPage.SetActive(false);
     }
 
     public void Exit() => Application.Quit();
@@ -41,16 +40,16 @@ public class MainMenu : MonoBehaviour
         switch (number)
         {
             case 2:
-                currentGunText.SetText("Current: <b>Fastel</b>");
+                _currentGunText.SetText("Current: <b>Fastel</b>");
                 break;
             case 3:
-                currentGunText.SetText("Current: <b>Glock</b>");
+                _currentGunText.SetText("Current: <b>Glock</b>");
                 break;
             case 4:
-                currentGunText.SetText("Current: <b>Rev</b>");
+                _currentGunText.SetText("Current: <b>Rev</b>");
                 break;
             default:
-                currentGunText.SetText("Current: <b>Beretta</b>");
+                _currentGunText.SetText("Current: <b>Beretta</b>");
                 break;
         }
     }

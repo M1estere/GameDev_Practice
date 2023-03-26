@@ -4,14 +4,14 @@ using UnityEngine.SceneManagement;
 
 public class PauseController : MonoBehaviour
 {
-    [SerializeField] private Animator pauseAnimator;
-    [SerializeField] private GameObject pauseObject;
+    [SerializeField] private Animator _pauseAnimator;
+    [SerializeField] private GameObject _pauseObject;
 
-    [SerializeField] private string mainMenuName = "Main Menu";
+    [SerializeField] private string _mainMenuName = "Main Menu";
     
     public void OpenPause()
     {
-        pauseObject.SetActive(true);
+        _pauseObject.SetActive(true);
         Time.timeScale = 0;
     }
 
@@ -19,9 +19,9 @@ public class PauseController : MonoBehaviour
 
     private IEnumerator Close()
     {
-        pauseAnimator.SetTrigger("Close");
+        _pauseAnimator.SetTrigger("Close");
         yield return new WaitForSecondsRealtime(.5f);
-        pauseObject.SetActive(false);
+        _pauseObject.SetActive(false);
 
         Time.timeScale = 1;
     }
@@ -35,6 +35,6 @@ public class PauseController : MonoBehaviour
     public void ExitToMenu()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(mainMenuName);
+        SceneManager.LoadScene(_mainMenuName);
     }
 }

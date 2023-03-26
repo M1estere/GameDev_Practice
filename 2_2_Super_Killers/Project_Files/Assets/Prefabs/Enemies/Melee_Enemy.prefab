@@ -247,9 +247,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00ea3991fa724af41aaaade334f8aa57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
-  turnSpeed: 30
-  attackDelay: 2
+  _moveSpeed: 1
+  _turnSpeed: 15
+  _attackDelay: 4
 --- !u!114 &444206870627008065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 850a0707860c0d641bcb0e18a05ca998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  _maxHealth: 50
 --- !u!95 &6178807454930078672
 Animator:
   serializedVersion: 4

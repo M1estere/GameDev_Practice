@@ -4,21 +4,17 @@ using UnityEngine;
 [RequireComponent(typeof(ShootingGraphics))]
 public class ShootingController : MonoBehaviour
 {
-    private enum ShootingCreature
-    {
-        Bot, 
-        Player,
-    }
+    private enum ShootingCreature { Bot, Player }
 
-    [SerializeField] private ShootingCreature type;
+    [SerializeField] private ShootingCreature _type;
     [Space(5)]
     
-    [SerializeField] private GameObject gunGFX;
-    [SerializeField] private float maxDistance;
-    [SerializeField] private LayerMask mask;
+    [SerializeField] private GameObject _gunGfx;
+    [SerializeField] private float _maxDistance;
+    [SerializeField] private LayerMask _mask;
     [Space(5)]
 
-    [SerializeField] private Gun currentGun;
+    [SerializeField] private Gun _currentGun;
 
     private ShootingGraphics _graphics;
     
@@ -30,15 +26,15 @@ public class ShootingController : MonoBehaviour
 
     private void Start()
     {
-        if (type == ShootingCreature.Player) currentGun = CheckGun();
+        if (_type == ShootingCreature.Player) _currentGun = CheckGun();
         
         _graphics = GetComponent<ShootingGraphics>();
-        if (type == ShootingCreature.Player)
+        if (_type == ShootingCreature.Player)
         {
             _updater = FindObjectOfType<UiUpdater>();
-            _updater.UpdateAmmo(currentGun.ClipBulletsAmount - _spentBullets, currentGun.ClipBulletsAmount);
+            _updater.UpdateAmmo(_currentGun.ClipBulletsAmount - _spentBullets, _currentGun.ClipBulletsAmount);
 
-            _updater.UpdateIcon(currentGun.GunUIIcon);
+            _updater.UpdateIcon(_currentGun.GunUIIcon);
         }
     }
 
@@ -46,7 +42,7 @@ public class ShootingController : MonoBehaviour
     {
         if (_isReloading == true) return;
 
-        if (Time.time > currentGun.ShootDelay + _lastShotTime) 
+        if (Time.time > _currentGun.ShootDelay + _lastShotTime) 
         {
             _lastShotTime = Time.time;
 
@@ -68,26 +64,26 @@ public class ShootingController : MonoBehaviour
         return temp;
     }
     
-    private bool CheckBullets() => _spentBullets < currentGun.ClipBulletsAmount;
+    private bool CheckBullets() => _spentBullets < _currentGun.ClipBulletsAmount;
     private void Reload() => StartCoroutine(ReloadCoroutine());
 
     private IEnumerator ReloadCoroutine()
     {
         _isReloading = true;
-        if (type == ShootingCreature.Player) _updater.SetReload(currentGun.ReloadTime);
+        if (_type == ShootingCreature.Player) _updater.SetReload(_currentGun.ReloadTime);
         
-        yield return new WaitForSeconds(currentGun.ReloadTime);
+        yield return new WaitForSeconds(_currentGun.ReloadTime);
         
         _spentBullets = 0;
         _isReloading = false;
         
-        if (type == ShootingCreature.Player)
-            _updater.UpdateAmmo(currentGun.ClipBulletsAmount - _spentBullets, currentGun.ClipBulletsAmount);
+        if (_type == ShootingCreature.Player)
+            _updater.UpdateAmmo(_currentGun.ClipBulletsAmount - _spentBullets, _currentGun.ClipBulletsAmount);
     }
     
     private void Shoot()
     {
-        if (Physics.Raycast(gunGFX.transform.position, gunGFX.transform.forward, out var hit, maxDistance, mask))
+        if (Physics.Raycast(_gunGfx.transform.position, _gunGfx.transform.forward, out var hit, _maxDistance, _mask))
         {
             _graphics.Shoot(hit);
             if (hit.collider.TryGetComponent(out Health health))
@@ -97,8 +93,8 @@ public class ShootingController : MonoBehaviour
             }
             _spentBullets++;
             
-            if (type == ShootingCreature.Player)
-                _updater.UpdateAmmo(currentGun.ClipBulletsAmount - _spentBullets, currentGun.ClipBulletsAmount);
+            if (_type == ShootingCreature.Player)
+                _updater.UpdateAmmo(_currentGun.ClipBulletsAmount - _spentBullets, _currentGun.ClipBulletsAmount);
         }
     }
 }

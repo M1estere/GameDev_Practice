@@ -198,10 +198,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4945730e9537fa46b5336ff969661d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1.5
-  turnSpeed: 5
-  distanceToStop: 3
-  distanceToShoot: 5
+  _moveSpeed: 3
+  _turnSpeed: 5
+  _distanceToStop: 5
 --- !u!114 &3008591708728843696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,13 +213,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8631e3891629bd74795835400240fecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  gunGFX: {fileID: 6978161785689083884}
-  maxDistance: 5
-  mask:
+  _type: 0
+  _gunGfx: {fileID: 6978161785689083884}
+  _maxDistance: 5
+  _mask:
     serializedVersion: 2
-    m_Bits: 2147483647
-  currentGun: {fileID: 11400000, guid: 31621f400bae25e488ac6fc90e2ee2a7, type: 2}
+    m_Bits: 72
+  _currentGun: {fileID: 11400000, guid: 31621f400bae25e488ac6fc90e2ee2a7, type: 2}
 --- !u!114 &3008591708728843699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,11 +232,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 053c2fd2ca09fe04f8348ff5c6b536f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootingSystem: {fileID: 5888112345780188554, guid: 6c1e3eccfca58a34a81166b6a3b28f4a, type: 3}
-  bulletSpawnPoint: {fileID: 3228389573615998563}
-  impactSystem: {fileID: 2669542834044804631, guid: df1a364902ca9444ab4d8ee9f190404e, type: 3}
-  bulletTrail: {fileID: 6114412140907590305, guid: 28ef8d1244d8bde4ba48c988d673e9e5, type: 3}
-  trailSpeedMultiplier: 13
+  _shootingSystem: {fileID: 5888112345780188554, guid: 6c1e3eccfca58a34a81166b6a3b28f4a, type: 3}
+  _impactSystem: {fileID: 2669542834044804631, guid: df1a364902ca9444ab4d8ee9f190404e, type: 3}
+  _bulletTrail: {fileID: 6114412140907590305, guid: 28ef8d1244d8bde4ba48c988d673e9e5, type: 3}
+  _bulletSpawnPoint: {fileID: 3228389573615998563}
+  _trailSpeedMultiplier: 50
 --- !u!114 &4519858340600488919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 850a0707860c0d641bcb0e18a05ca998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  _maxHealth: 50
 --- !u!1 &3228389573615998560
 GameObject:
   m_ObjectHideFlags: 0
