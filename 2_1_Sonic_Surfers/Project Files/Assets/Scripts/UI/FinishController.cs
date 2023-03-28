@@ -13,6 +13,10 @@ public class FinishController : MonoBehaviour
     
     [SerializeField] private string _mainMenuName = "Main Menu";
     
+    private SceneFader _fader;
+
+    private void Start() => _fader = FindObjectOfType<SceneFader>();
+    
     public void ShowFinish()
     {
         Bank.Instance.RecordRings();
@@ -22,6 +26,6 @@ public class FinishController : MonoBehaviour
         _finishLevelUI.SetActive(true);
     }
 
-    public void Restart() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    public void Leave() => SceneManager.LoadScene(_mainMenuName);
+    public void Restart() => _fader.FadeTo(SceneManager.GetActiveScene().name);
+    public void Leave() => _fader.FadeTo(_mainMenuName);
 }

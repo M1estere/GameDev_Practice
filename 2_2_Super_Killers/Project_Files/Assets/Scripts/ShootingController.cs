@@ -55,8 +55,9 @@ public class ShootingController : MonoBehaviour
     {
         Gun temp = PlayerPrefs.GetInt("Gun") switch
         {
-            2 => Resources.Load<Gun>("Guns/Fastel"),
-            3 => Resources.Load<Gun>("Guns/Glock"),
+            1 => Resources.Load<Gun>("Guns/Fastel"),
+            2 => Resources.Load<Gun>("Guns/Glock"),
+            3 => Resources.Load<Gun>("Guns/Minigun"),
             4 => Resources.Load<Gun>("Guns/Rev"),
             _ => Resources.Load<Gun>("Guns/Beretta")
         };

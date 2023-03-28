@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,7 +10,11 @@ public class PauseController : MonoBehaviour
     [Space(2)]
     
     [SerializeField] private string _mainMenuName = "Main Menu";
-    
+
+    private SceneFader _fader;
+
+    private void Start() => _fader = FindObjectOfType<SceneFader>();
+
     public void OpenPause()
     {
         _pauseObject.SetActive(true);
@@ -30,12 +35,12 @@ public class PauseController : MonoBehaviour
     public void ReloadLevel()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        _fader.FadeTo(SceneManager.GetActiveScene().name);
     }
 
     public void ExitToMenu()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(_mainMenuName);
+        _fader.FadeTo(_mainMenuName);
     }
 }

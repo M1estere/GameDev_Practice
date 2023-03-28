@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class MoveEnvironment : MonoBehaviour
 {
-    private void Update()
-    {
-        Vector3 moveVector = new Vector3(-1, 0, 0);
-        transform.Translate(moveVector * Globals.CurrentMoveSpeed * Time.deltaTime);
-    }
+    private Vector3 _directionVector = new Vector3(-1, 0, 0);
+    
+    private void Update() => transform.Translate(_directionVector * Globals.CurrentMoveSpeed * Time.deltaTime);
 }

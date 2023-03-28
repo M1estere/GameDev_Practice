@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10de20300b8da244b1cb1d115dc339d, type: 3}
   m_Name: Fastel
   m_EditorClassIdentifier: 
-  GunName: Fast
-  ClipBulletsAmount: 5
-  ReloadTime: 2
-  ShootDelay: 0.3
-  GunUIIcon: {fileID: 21300000, guid: 3808acac16d635e4da2e4613f92e41a7, type: 3}
+  _gunName: Fastel
+  _clipBulletsAmount: 5
+  _reloadTime: 2
+  _shootDelay: 0.3
+  _gunUIIcon: {fileID: 21300000, guid: 3808acac16d635e4da2e4613f92e41a7, type: 3}

@@ -16,9 +16,11 @@ public class CameraFollower : MonoBehaviour
         if (_playerObject == null) return;
         Vector3 targetVector = _playerObject.position + _offsetVector;
 
-        float xValue = Mathf.Lerp(transform.position.x, targetVector.x, _positionLerpSpeed * Time.deltaTime);
-        float zValue = Mathf.Lerp(transform.position.z, targetVector.z, _positionLerpSpeed * Time.deltaTime);
+        Vector3 thisPosition = transform.position;
+        float xValue = Mathf.Lerp(thisPosition.x, targetVector.x, _positionLerpSpeed * Time.deltaTime);
+        float zValue = Mathf.Lerp(thisPosition.z, targetVector.z, _positionLerpSpeed * Time.deltaTime);
 
-        transform.position = new Vector3(xValue, transform.position.y, zValue);
+        thisPosition = new Vector3(xValue, thisPosition.y, zValue);
+        transform.position = thisPosition;
     }
 }

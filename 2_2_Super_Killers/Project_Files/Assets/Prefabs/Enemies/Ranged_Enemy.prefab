@@ -200,7 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 3
   _turnSpeed: 5
-  _distanceToStop: 5
+  _distanceToStop: 3
 --- !u!114 &3008591708728843696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,7 +215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _type: 0
   _gunGfx: {fileID: 6978161785689083884}
-  _maxDistance: 5
+  _maxDistance: 2
   _mask:
     serializedVersion: 2
     m_Bits: 72

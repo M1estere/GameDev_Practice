@@ -14,7 +14,6 @@ public class RotationTowardsEnemy : MonoBehaviour
     private void Update() => RotateTowardsEnemy();
     
     private void RotateTowardsEnemy() => LockOnTarget();
-    
     private void LockOnTarget()
     {
         if (_target == null) return;

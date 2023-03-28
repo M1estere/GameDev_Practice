@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2604b14f526466408eda0b46bc4b375, type: 3}
   m_Name: Level 1
   m_EditorClassIdentifier: 
-  LevelNumber: 0
-  WavesAmount: 3
-  EnemiesPerWave: 050000000a0000000f000000
-  WavesTime:
-  - 5
-  - 10
-  - 15
+  _waves:
+  - _enemiesOnWave: 8
+    _waveTime: 10
+  - _enemiesOnWave: 10
+    _waveTime: 10
+  - _enemiesOnWave: 15
+    _waveTime: 15

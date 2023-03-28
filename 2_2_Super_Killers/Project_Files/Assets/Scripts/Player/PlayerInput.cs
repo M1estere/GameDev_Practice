@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerMovement))]
@@ -20,19 +21,26 @@ public class PlayerInput : MonoBehaviour
     private void Update()
     {
         Vector3 moveVector = Vector3.zero;
-        if (_controlType == ControlType.Keyboard)
+        switch (_controlType)
         {
-            float horizontalInput = Input.GetAxis(HORIZONTAL);
-            float verticalInput = Input.GetAxis(VERTICAL);
+            case ControlType.Keyboard:
+            {
+                float horizontalInput = Input.GetAxis(HORIZONTAL);
+                float verticalInput = Input.GetAxis(VERTICAL);
 
-            moveVector = new Vector3(horizontalInput, 0, verticalInput);
-        }
-        else if (_controlType == ControlType.Joystick)
-        {
-            float horizontalInput = _controlJoystick.Horizontal;
-            float verticalInput = _controlJoystick.Vertical;
+                moveVector = new Vector3(horizontalInput, 0, verticalInput);
+                break;
+            }
+            case ControlType.Joystick:
+            {
+                float horizontalInput = _controlJoystick.Horizontal;
+                float verticalInput = _controlJoystick.Vertical;
             
-            moveVector = new Vector3(-verticalInput, 0, horizontalInput);
+                moveVector = new Vector3(-verticalInput, 0, horizontalInput);
+                break;
+            }
+            default:
+                throw new ArgumentOutOfRangeException();
         }
 
         Matrix4x4 matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));

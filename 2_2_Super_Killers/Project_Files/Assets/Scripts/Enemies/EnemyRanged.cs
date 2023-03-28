@@ -40,8 +40,5 @@ public class EnemyRanged : Enemy
         transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
     }
 
-    public override void Attack()
-    {
-        return;
-    }
+    public override void Attack() {  }
 }

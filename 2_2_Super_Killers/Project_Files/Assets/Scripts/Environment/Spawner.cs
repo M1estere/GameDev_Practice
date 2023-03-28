@@ -15,9 +15,8 @@ public class Spawner : MonoBehaviour
     private Transform _playerTransform;
 
     private void Awake() => _playerTransform = FindObjectOfType<PlayerMovement>().transform;
-
+    
     public void Spawn(int amount) => StartCoroutine(SpawnWave(amount));
-
     private IEnumerator SpawnWave(int amount)
     {
         if (_playerTransform == null) yield return null;
@@ -48,7 +47,9 @@ public class Spawner : MonoBehaviour
 
     private bool CheckDistance(Vector3 position)
     {
-        return Mathf.Abs(position.x - _playerTransform.position.x) >= _playerOffsetDistance
-               && Mathf.Abs(position.z - _playerTransform.position.z) >= _playerOffsetDistance;
+        Vector3 playerPosition = _playerTransform.position;
+        
+        return Mathf.Abs(position.x - playerPosition.x) >= _playerOffsetDistance
+               && Mathf.Abs(position.z - playerPosition.z) >= _playerOffsetDistance;
     }
 }

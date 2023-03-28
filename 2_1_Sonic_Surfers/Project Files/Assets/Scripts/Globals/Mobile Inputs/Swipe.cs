@@ -19,15 +19,16 @@ public class Swipe : MonoBehaviour
 
         if (Input.touches.Length > 0)
         {
-            if (Input.touches[0].phase == TouchPhase.Began)
+            switch (Input.touches[0].phase)
             {
-                _isDragging = true;
-                _startTouch = Input.touches[0].position;
-            }
-            else if (Input.touches[0].phase is TouchPhase.Ended or TouchPhase.Canceled)
-            {
-                _isDragging = false;
-                Reset();
+                case TouchPhase.Began:
+                    _isDragging = true;
+                    _startTouch = Input.touches[0].position;
+                    break;
+                case TouchPhase.Ended or TouchPhase.Canceled:
+                    _isDragging = false;
+                    Reset();
+                    break;
             }
         }
 
@@ -38,7 +39,7 @@ public class Swipe : MonoBehaviour
                 _swipeDelta = Input.touches[0].position - _startTouch;
         }
 
-        if (_swipeDelta.magnitude <= 100) return;
+        if (_swipeDelta.magnitude <= 75) return;
         
         float x = _swipeDelta.x;
         float y = _swipeDelta.y;

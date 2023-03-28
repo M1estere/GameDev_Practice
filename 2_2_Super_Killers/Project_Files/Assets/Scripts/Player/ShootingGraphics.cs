@@ -15,8 +15,9 @@ public class ShootingGraphics : MonoBehaviour
     
     public void Shoot(RaycastHit hit)
     {
-        GameObject particles = Instantiate(_shootingSystem, _bulletSpawnPoint.position, Quaternion.identity);
-        TrailRenderer trail = Instantiate(_bulletTrail, _bulletSpawnPoint.position, Quaternion.identity);
+        Vector3 bulletSpawnPosition = _bulletSpawnPoint.position;
+        GameObject particles = Instantiate(_shootingSystem, bulletSpawnPosition, Quaternion.identity);
+        TrailRenderer trail = Instantiate(_bulletTrail, bulletSpawnPosition, Quaternion.identity);
 
         StartCoroutine(SpawnTrail(trail, hit));
         

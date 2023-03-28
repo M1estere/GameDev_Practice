@@ -8,6 +8,10 @@ public class PauseController : MonoBehaviour
     [SerializeField] private GameObject _pauseObject;
 
     [SerializeField] private string _mainMenuName = "Main Menu";
+
+    private SceneFader _sceneFader;
+
+    private void Start() => _sceneFader = FindObjectOfType<SceneFader>();
     
     public void OpenPause()
     {
@@ -29,12 +33,12 @@ public class PauseController : MonoBehaviour
     public void ReloadLevel()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        _sceneFader.FadeTo(SceneManager.GetActiveScene().name);
     }
 
     public void ExitToMenu()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(_mainMenuName);
+        _sceneFader.FadeTo(_mainMenuName);
     }
 }

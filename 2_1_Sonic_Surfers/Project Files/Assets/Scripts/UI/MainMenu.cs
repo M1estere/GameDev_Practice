@@ -18,10 +18,14 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject _thisPage;
     [SerializeField] private GameObject _aboutPage;
 
+    private SceneFader _fader;
+    
     private int _characterIndex;
 
     private void Awake()
     {
+        _fader = FindObjectOfType<SceneFader>();
+        
         _bankRingsText.SetText($"{PlayerPrefs.GetInt("BankRings")}");
         Time.timeScale = 1;
         
@@ -57,7 +61,7 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.SetInt("Character", id);
     }
 
-    public void Play() => SceneManager.LoadScene(_startLevel);
+    public void Play() => _fader.FadeTo(_startLevel);
     public void VisitSite(string address) => Application.OpenURL(address);
     
     public void About()

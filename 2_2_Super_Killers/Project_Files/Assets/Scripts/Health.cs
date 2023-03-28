@@ -5,14 +5,18 @@ public class Health : MonoBehaviour
     [SerializeField, Range(0, 100)] private float _maxHealth;
     private float _currentHealth;
 
+    private bool _isPlayer = false;
     private UiUpdater _healthUI;
     
     private void Awake()
     {
         _currentHealth = _maxHealth;
         if (TryGetComponent(out PlayerMovement playerMovement))
+        {
+            _isPlayer = true;
             _healthUI = FindObjectOfType<UiUpdater>();
-        
+        }
+           
         if (_healthUI != null) _healthUI.SetUI(_currentHealth, _maxHealth);
     }
 
@@ -33,7 +37,7 @@ public class Health : MonoBehaviour
 
     private void Death()
     {
-        if (TryGetComponent(out PlayerMovement move))
+        if (_isPlayer == true)
             _healthUI.ShowFinish(false);
         Destroy(gameObject);
     }

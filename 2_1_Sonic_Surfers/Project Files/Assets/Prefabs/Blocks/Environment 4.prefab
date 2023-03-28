@@ -609,8 +609,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9070916336705652823}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15, y: 1.38, z: 0}
-  m_LocalScale: {x: 0.0007, y: 2.8381443, z: 6.7465}
+  m_LocalPosition: {x: 15.26, y: 1.38, z: 0}
+  m_LocalScale: {x: 0.5, y: 2.8381443, z: 6.7465}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9070916337437595832}
@@ -2324,6 +2324,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ring (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 52647560842339623, guid: ed4957a1ba65f9147ba5164c17afb7f4,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 860427230432214941, guid: ed4957a1ba65f9147ba5164c17afb7f4,
         type: 3}
       propertyPath: m_RootOrder
@@ -2379,6 +2384,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9022611440807124478, guid: ed4957a1ba65f9147ba5164c17afb7f4,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed4957a1ba65f9147ba5164c17afb7f4, type: 3}
 --- !u!4 &8508008163472882814 stripped
@@ -2398,6 +2408,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ring (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 52647560842339623, guid: ed4957a1ba65f9147ba5164c17afb7f4,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 860427230432214941, guid: ed4957a1ba65f9147ba5164c17afb7f4,
         type: 3}
@@ -2454,6 +2469,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9022611440807124478, guid: ed4957a1ba65f9147ba5164c17afb7f4,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed4957a1ba65f9147ba5164c17afb7f4, type: 3}
 --- !u!4 &8508008162264238376 stripped
@@ -2473,6 +2493,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ring (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 52647560842339623, guid: ed4957a1ba65f9147ba5164c17afb7f4,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 860427230432214941, guid: ed4957a1ba65f9147ba5164c17afb7f4,
         type: 3}
@@ -2529,6 +2554,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9022611440807124478, guid: ed4957a1ba65f9147ba5164c17afb7f4,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed4957a1ba65f9147ba5164c17afb7f4, type: 3}
 --- !u!4 &8508008162251687330 stripped
@@ -2548,6 +2578,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ring
+      objectReference: {fileID: 0}
+    - target: {fileID: 52647560842339623, guid: ed4957a1ba65f9147ba5164c17afb7f4,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 860427230432214941, guid: ed4957a1ba65f9147ba5164c17afb7f4,
         type: 3}
@@ -2604,6 +2639,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9022611440807124478, guid: ed4957a1ba65f9147ba5164c17afb7f4,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed4957a1ba65f9147ba5164c17afb7f4, type: 3}
 --- !u!4 &8508008162515123730 stripped
@@ -2623,6 +2663,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ring (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 52647560842339623, guid: ed4957a1ba65f9147ba5164c17afb7f4,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 860427230432214941, guid: ed4957a1ba65f9147ba5164c17afb7f4,
         type: 3}
@@ -2677,6 +2722,11 @@ PrefabInstance:
     - target: {fileID: 860427230432214941, guid: ed4957a1ba65f9147ba5164c17afb7f4,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9022611440807124478, guid: ed4957a1ba65f9147ba5164c17afb7f4,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
