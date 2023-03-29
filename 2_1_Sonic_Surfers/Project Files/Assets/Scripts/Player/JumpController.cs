@@ -23,9 +23,9 @@ public class JumpController : MonoBehaviour
         
         _playerController.ChangeJump(true);
         
-        transform.DOJump(transform.position, _jumpHeight, 1, _jumpDuration, false);
+        transform.DOJump(new Vector3(transform.position.x, 0, transform.position.z), _jumpHeight, 1, _jumpDuration, false);
 
-        yield return new WaitForSeconds(_jumpDuration - (_jumpDuration / 7));
+        yield return new WaitForSeconds(_jumpDuration);
         
         _playerController.ChangeJump(false);
     }
