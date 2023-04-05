@@ -4,6 +4,7 @@ using DG.Tweening;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerController))]
+[RequireComponent(typeof(Rigidbody))]
 public class JumpController : MonoBehaviour
 {
     [Header("Jump Setup")] 
@@ -15,12 +16,28 @@ public class JumpController : MonoBehaviour
     [SerializeField] private AudioSource _jumpAudio;
     
     private PlayerController _playerController;
+    private Rigidbody _rigidbody;
+    
+    private void Awake()
+    {
+        _playerController = GetComponent<PlayerController>();
+        _rigidbody = GetComponent<Rigidbody>();
+        
+        LockNecessaryConstraints();
+    }
 
-    private void Awake() => _playerController = GetComponent<PlayerController>();
+    private void LockNecessaryConstraints()
+    {
+        _rigidbody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionX |
+                                 RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | 
+                                 RigidbodyConstraints.FreezeRotationZ;   
+    }
     
     public void Jump() => StartCoroutine(JumpCoroutine());
     private IEnumerator JumpCoroutine()
     {
+        _rigidbody.constraints = RigidbodyConstraints.None;
+        
         try
         {
             _jumpAudio.Play();
@@ -37,5 +54,7 @@ public class JumpController : MonoBehaviour
         yield return new WaitForSeconds(_jumpDuration);
         
         _playerController.ChangeJump(false);
+        
+        LockNecessaryConstraints();
     }
 }
