@@ -1,17 +1,17 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerController))]
 public class HealthController : MonoBehaviour
 {
-    [Header("FX")]
+    [Header("Visual Setup")]
     [SerializeField] private ParticleSystem _damageParticles;
-    [Space(5)]
+    [Space(2)]
     
-    [Header("Model")]
     [SerializeField] private GameObject _model;
     [Space(5)]
     
-    [Header("Sounds")]
+    [Header("Audio Setup")]
     [SerializeField] private AudioSource _loseRings;
     [SerializeField] private AudioSource _death;
 
@@ -34,8 +34,15 @@ public class HealthController : MonoBehaviour
 
     private void LoseRings()
     {
-        _loseRings.Play();
-        
+        try
+        {
+            _loseRings.Play();
+        }
+        catch (NullReferenceException exception)
+        {
+            Debug.Log(gameObject.name + " has no lose rings audio");
+        }
+
         ParticleSystem.EmissionModule emission = _damageParticles.emission;
         emission.SetBurst(0, new ParticleSystem.Burst(0, Rings));
             
@@ -48,7 +55,14 @@ public class HealthController : MonoBehaviour
     private void Death()
     {
         _playerController.enabled = false;
-        _death.Play();
+        try
+        {
+            _death.Play();
+        }
+        catch (NullReferenceException exception)
+        {
+            Debug.Log(gameObject.name + " has no death audio");
+        }
         
         Globals.CurrentMoveSpeed = 0;
         

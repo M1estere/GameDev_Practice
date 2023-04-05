@@ -1,39 +1,28 @@
-using System.Collections;
-using DG.Tweening;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(JumpController))]
 [RequireComponent(typeof(SlideController))]
-[RequireComponent(typeof(MeshTrail))]
+[RequireComponent(typeof(SideStepController))]
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
     public bool IsSliding { get; set; }
     
-    [Header("Velocity Setup")]
+    [Header("General Setup")]
     [SerializeField, Range(15, 50)] private float _maxSpeed = 25; 
     [SerializeField] private float _speedIncreaseDivider = 5;
     [Space(5)]
-    
-    [Header("Side Step Setup")]
-    [SerializeField] private float _sideStepLength = 3;
-    [SerializeField] private float _sideStepDuration = .2f;
-    [Space(2)] 
-    
-    [Header("Audio")]
-    [SerializeField] private AudioSource _sideStepAudio;
 
     private Animator _animator;
     private JumpController _jumpController;
     private SlideController _slideController;
-    private MeshTrail _meshTrail;
-    
+    private SideStepController _sideStepController;
+
     private float _playerMoveSpeed = 15;
     private float _time = 0;
     
     private bool _isMovingSides = false;
-    private bool _canMoveRight = true;
-    private bool _canMoveLeft = true;
     private bool _jumping;
 
     public void ChangeJump(bool state)
@@ -41,13 +30,18 @@ public class PlayerController : MonoBehaviour
         _isMovingSides = state;
         _jumping = state;
     } 
+    
+    public void ChangeSideMoving(bool state)
+    {
+        _isMovingSides = state;
+    } 
 
     private void Start()
     {
         _animator = GetComponent<Animator>();
         _jumpController = GetComponent<JumpController>();
         _slideController = GetComponent<SlideController>();
-        _meshTrail = GetComponent<MeshTrail>();
+        _sideStepController = GetComponent<SideStepController>();
     }
 
     private void Update()
@@ -91,34 +85,11 @@ public class PlayerController : MonoBehaviour
         
         _slideController.Slide();
     }
-    
-    public void SideStep(float direction)
+
+    public void SideStep(int direction)
     {
         if (_isMovingSides == true) return;
-    
-        if (direction == 1 && _canMoveLeft == false) return;
-        if (direction == -1 && _canMoveRight == false) return;
         
-        _meshTrail.Trail();
-        
-        transform.DOMoveZ(transform.position.z + (_sideStepLength * direction), _sideStepDuration, false);
-        StartCoroutine(nameof(StepDelay));
-    }
-
-    private IEnumerator StepDelay()
-    {
-        _sideStepAudio.Play();
-        
-        _isMovingSides = true;
-        yield return new WaitForSeconds(_sideStepDuration);
-        _isMovingSides = false;
-        
-        CheckBorders();
-    }
-    
-    private void CheckBorders()
-    {
-        _canMoveLeft = transform.position.z == _sideStepLength ? false : true;
-        _canMoveRight = transform.position.z == -_sideStepLength ? false : true;
+        _sideStepController.SideStep(direction);
     }
 }

@@ -18,6 +18,9 @@ public class Ring : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!other.TryGetComponent(out PlayerController playerController)) return;
+
+        if (other.TryGetComponent(out BoostController boost))
+            boost.IncreaseBoost(.2f);
         
         _takeAudio.Play();
             

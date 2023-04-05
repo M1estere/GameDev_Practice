@@ -1,9 +1,11 @@
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerController))]
+[RequireComponent(typeof(BoostController))]
 public class Swipe : MonoBehaviour
 {
     private PlayerController _playerController;
+    
     private Vector2 _startTouch, _swipeDelta;
     
     private bool _swipeLeft, _swipeRight;
@@ -11,7 +13,10 @@ public class Swipe : MonoBehaviour
     
     private bool _isDragging = false;
 
-    private void Awake() => _playerController = GetComponent<PlayerController>();
+    private void Awake()
+    { 
+        _playerController = GetComponent<PlayerController>();
+    } 
     
     private void Update()
     {
@@ -39,7 +44,7 @@ public class Swipe : MonoBehaviour
                 _swipeDelta = Input.touches[0].position - _startTouch;
         }
 
-        if (_swipeDelta.magnitude <= 75) return;
+        if (_swipeDelta.magnitude <= 50) return;
         
         float x = _swipeDelta.x;
         float y = _swipeDelta.y;

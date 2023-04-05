@@ -17,13 +17,25 @@ public class EnemyCollision : MonoBehaviour
     {
         if (!other.TryGetComponent(out HealthController healthController)) return;
         if (!other.TryGetComponent(out PlayerController playerController)) return;
+        if (!other.TryGetComponent(out BoostController boostController)) return;
 
-        if (_collisionCounter++ != 0) return; 
+        if (_collisionCounter++ != 0) return;
+
+        if (boostController.Boosting == true)
+        {
+            Death();
+            return;
+        } 
         
         if (playerController.IsSliding == true)
+        {
             Death();
+            boostController.IncreaseBoost(5);
+        }
         else
+        {
             healthController.GetDamage();
+        }
     }
 
     private void Death()

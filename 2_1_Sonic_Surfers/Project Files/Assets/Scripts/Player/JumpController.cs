@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class JumpController : MonoBehaviour
     [SerializeField] private float _jumpDuration;
     [Space(5)]
     
+    [Header("Audio Setup")]
     [SerializeField] private AudioSource _jumpAudio;
     
     private PlayerController _playerController;
@@ -19,8 +21,15 @@ public class JumpController : MonoBehaviour
     public void Jump() => StartCoroutine(JumpCoroutine());
     private IEnumerator JumpCoroutine()
     {
-        _jumpAudio.Play();
-        
+        try
+        {
+            _jumpAudio.Play();
+        }
+        catch (NullReferenceException exception)
+        {
+            Debug.Log(gameObject.name + " has no jump audio");
+        }
+
         _playerController.ChangeJump(true);
         
         transform.DOJump(new Vector3(transform.position.x, 0, transform.position.z), _jumpHeight, 1, _jumpDuration, false);

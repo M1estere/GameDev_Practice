@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
@@ -17,6 +16,7 @@ public class MainMenu : MonoBehaviour
     [Header("Pages")]
     [SerializeField] private GameObject _thisPage;
     [SerializeField] private GameObject _aboutPage;
+    [SerializeField] private GameObject _settingsPage;
 
     private SceneFader _fader;
     
@@ -72,11 +72,21 @@ public class MainMenu : MonoBehaviour
         foreach (GameObject obj in _charactersShow)
             obj.SetActive(false);
     }
+    
+    public void Settings()
+    {
+        _thisPage.SetActive(false);
+        _settingsPage.SetActive(true);
+        
+        foreach (GameObject obj in _charactersShow)
+            obj.SetActive(false);
+    }
 
     public void MainPage()
     {
         _thisPage.SetActive(true);
         _aboutPage.SetActive(false);
+        _settingsPage.SetActive(false);
         
         ChooseCharacter(PlayerPrefs.GetInt("Character"));
     }
