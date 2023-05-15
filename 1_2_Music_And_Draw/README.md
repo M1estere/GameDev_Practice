@@ -1,7 +1,6 @@
 # Second lab
 ## Task: Music player and Draw board
 * `Project Files` - folder with all the source files
-* `Builds` - folder, containing builds for each task for different platforms
 #
 
 ### Music Player
