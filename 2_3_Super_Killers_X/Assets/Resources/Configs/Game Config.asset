@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2897f746ae1a4d7092436597240c82be, type: 3}
+  m_Name: Game Config
+  m_EditorClassIdentifier: 
+  <PlayerBulletDamage>k__BackingField: 50
+  <PlayerMovingForceMultiplier>k__BackingField: 1
+  <RotationSpeedMultiplier>k__BackingField: 20
+  <EnemySearchRadius>k__BackingField: 15
+  <EnemyBulletDamage>k__BackingField: 20
+  <EnemyMovingForceMultiplier>k__BackingField: 75
+  <EnemyRotationInterpolation>k__BackingField: 5
+  <CameraFollowInterpolation>k__BackingField: 15
+  <Offset>k__BackingField: {x: 7.25, y: 10.2, z: -6.3}

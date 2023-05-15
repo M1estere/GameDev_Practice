@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c429a221e3e84b92858eb44a0da8e8e1, type: 3}
+  m_Name: Player Bullet
+  m_EditorClassIdentifier: 
+  <StartBulletImpactForce>k__BackingField: 70
+  <BulletImpactDamage>k__BackingField: 50
+  <BulletImpactEffect>k__BackingField: {fileID: 3332434508612849631, guid: 1531bb1760359d2498f9ae2a9ec2d98b, type: 3}
