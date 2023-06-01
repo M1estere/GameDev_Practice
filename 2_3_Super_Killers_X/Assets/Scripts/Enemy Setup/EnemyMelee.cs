@@ -3,18 +3,11 @@ using Zenject;
 
 public class EnemyMelee : Enemy, IFixedTickable
 {
-    [Inject] private Rigidbody _rigidbody;
-    
-    [Inject] private Player _player;
-
     [Inject] private MeleeEnemyConfig _meleeEnemyConfig;
     
     private float _lastAttackTime;
     
-    [Inject]
-    private void Constructor(TickableManager tickableManager) => tickableManager.AddFixed(this);
-
-    public void FixedTick()
+    public override void FixedTick()
     {
         Vector3 playerPosition = _player.transform.position;
         playerPosition.y = 0;
@@ -40,6 +33,7 @@ public class EnemyMelee : Enemy, IFixedTickable
     }
     
     public override void Move(Vector3 force) => _rigidbody.AddForce(force, ForceMode.Force);
+    
     public override void RotateTowardsPlayer(Vector3 force) => 
         _rigidbody.rotation = Quaternion.Lerp(_rigidbody.rotation, Quaternion.LookRotation(force), _meleeEnemyConfig.RotationInterpolation * Time.deltaTime);
 

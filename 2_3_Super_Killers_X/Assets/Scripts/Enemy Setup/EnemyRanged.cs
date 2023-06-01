@@ -1,20 +1,13 @@
 ﻿using UnityEngine;
 using Zenject;
 
-public class EnemyRanged : Enemy, IFixedTickable
+public class EnemyRanged : Enemy
 {
-    [Inject] private Rigidbody _rigidbody;
-    
-    [Inject] private Player _player;
-
     [Inject] private RangedEnemyConfig _rangedEnemyConfig;
 
     [Inject] private ShootingController _shootingController;
     
-    [Inject]
-    private void Constructor(TickableManager tickableManager) => tickableManager.AddFixed(this);
-
-    public void FixedTick()
+    public override void FixedTick()
     {
         Vector3 playerPosition = _player.transform.position;
         playerPosition.y = 0;
@@ -40,5 +33,6 @@ public class EnemyRanged : Enemy, IFixedTickable
     public override void RotateTowardsPlayer(Vector3 force) => 
         _rigidbody.rotation = Quaternion.Lerp(_rigidbody.rotation, Quaternion.LookRotation(force), _rangedEnemyConfig.RotationInterpolation * Time.deltaTime);
 
+    
     public override void Attack() => _shootingController.enabled = true;
 }

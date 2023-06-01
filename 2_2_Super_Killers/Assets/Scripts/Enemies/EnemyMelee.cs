@@ -1,29 +1,25 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Rigidbody))]
 public class EnemyMelee : Enemy
 {
-    [Header("Speed Control")]
-    [SerializeField, Range(1, 10)] private float _moveSpeed;
-    [SerializeField, Range(15, 45)] private float _turnSpeed;
-    [Space(5)]
-    
     [SerializeField] private float _attackDelay;
     private float _lastAttackTime;
-    
-    private Transform _playerTransform;
-    private Animator _animator;
 
-    private void Start()
+    private Animator _animator;
+    
+    protected override void Start()
     {
-        _playerTransform = FindObjectOfType<PlayerMovement>().GetComponent<Transform>();;
+        _playerTransform = FindObjectOfType<PlayerMovement>().GetComponent<Transform>();
+        _rigidbody = GetComponent<Rigidbody>();
         _animator = GetComponent<Animator>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (_playerTransform == null) return;
-        if (Vector3.Distance(_playerTransform.position, transform.position) > 2)
+        if (Vector3.Distance(_playerTransform.position, transform.position) > _distanceToStop)
         {
             Movement();
         }
@@ -38,21 +34,7 @@ public class EnemyMelee : Enemy
         
         RotateTowardsPlayer();
     }
-
-    public override void Movement()
-    {
-        transform.position = Vector3.MoveTowards(transform.position, _playerTransform.position, _moveSpeed * Time.deltaTime);
-    }
-
-    public override void RotateTowardsPlayer()
-    {
-        var dir = _playerTransform.position - transform.position;
-        var lookRotation = Quaternion.LookRotation(dir);
-        var rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * _turnSpeed).eulerAngles;
-        
-        transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-    }
-
+    
     public override void Attack()
     {
         if (Physics.Raycast(transform.position, transform.forward, out var hit, 2))

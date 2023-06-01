@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-public abstract class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour, IFixedTickable
 {
     public class Factory : PlaceholderFactory<Enemy, Enemy>
     {
@@ -17,8 +17,15 @@ public abstract class Enemy : MonoBehaviour
         public Enemy Create(Enemy prefab) => _container.InstantiatePrefabForComponent<Enemy>(prefab);
     }
 
-    public abstract void Move(Vector3 force);
-    public abstract void RotateTowardsPlayer(Vector3 force);
+    [Inject] protected Rigidbody _rigidbody;
+    [Inject] protected Player _player;
+    
+    [Inject]
+    private void Constructor(TickableManager tickableManager) => tickableManager.AddFixed(this);
+    public virtual void FixedTick() { }
 
+    public abstract void Move(Vector3 force);
+
+    public abstract void RotateTowardsPlayer(Vector3 force);
     public abstract void Attack();
 }

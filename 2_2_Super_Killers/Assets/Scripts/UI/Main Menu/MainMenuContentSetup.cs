@@ -20,12 +20,8 @@ public class MainMenuContentSetup : MonoBehaviour
     
     [SerializeField] private string _levelName = "Main Scene";
 
-    private SceneFader _sceneFader;
-    
     private void Awake()
     {
-        _sceneFader = FindObjectOfType<SceneFader>();
-        
         ChooseGun(PlayerPrefs.GetInt("Gun")); 
     }
     
