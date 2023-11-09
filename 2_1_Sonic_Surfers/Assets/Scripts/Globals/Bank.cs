@@ -7,6 +7,10 @@ public class Bank : MonoBehaviour
     
     private void Awake() => Instance = this;
     
-    public void AddToBank() => BankRings += 100;
-    public void RecordRings() => PlayerPrefs.SetInt("BankRings", PlayerPrefs.GetInt("BankRings") + BankRings);
+    public void AddToBank() => BankRings += 10;
+    public void RecordRings() 
+    {
+        RedisController.RedisControllerInstance.SetNewValue(PlayerPrefs.GetString("player_name"), BankRings);
+        PlayerPrefs.SetInt("BankRings", PlayerPrefs.GetInt("BankRings") + BankRings);
+    } 
 }

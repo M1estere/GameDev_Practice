@@ -24,7 +24,7 @@ public class GameController : MonoBehaviour
 
     private void CheckRingsForBank()
     {
-        if (CurrentRings < 100) return;
+        if (CurrentRings < 10) return;
 
         Bank.Instance.AddToBank();
         CurrentRings = 0;

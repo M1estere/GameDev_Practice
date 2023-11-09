@@ -17,6 +17,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject _thisPage;
     [SerializeField] private GameObject _aboutPage;
     [SerializeField] private GameObject _settingsPage;
+    [SerializeField] private GameObject _leadersPage;
 
     private SceneFader _fader;
     
@@ -72,6 +73,15 @@ public class MainMenu : MonoBehaviour
         foreach (GameObject obj in _charactersShow)
             obj.SetActive(false);
     }
+
+    public void Leaders()
+    {
+        _thisPage.SetActive(false);
+        _leadersPage.SetActive(true);
+
+        foreach (GameObject obj in _charactersShow)
+            obj.SetActive(false);
+    }
     
     public void Settings()
     {
@@ -87,7 +97,8 @@ public class MainMenu : MonoBehaviour
         _thisPage.SetActive(true);
         _aboutPage.SetActive(false);
         _settingsPage.SetActive(false);
-        
+        _leadersPage.SetActive(false);
+
         ChooseCharacter(PlayerPrefs.GetInt("Character"));
     }
 
