@@ -3,9 +3,14 @@
 * `Project Files` - folder with all the source files for the project
 
 <p float="center">
-  <img src="https://user-images.githubusercontent.com/58213582/230131514-8ce46792-65a8-42fe-a82d-31f9b5f9096e.png" height="500" />
+  <img src="https://github.com/M1estere/TVP_Labs/assets/58213582/a6c374dd-5b6c-4a72-8fe5-7753bb79c162" height="500" />
   &nbsp;&nbsp;
   <img src="https://user-images.githubusercontent.com/58213582/230131522-96497af3-8c8a-4b3f-bdd6-1a5c9b1bfdf0.png" height="500" />
   &nbsp;&nbsp;
+  <img src="https://github.com/M1estere/TVP_Labs/assets/58213582/257674b1-33ef-4b92-9700-f3824f87f19f" height="500" />
+  &nbsp;&nbsp;
   <img src="https://user-images.githubusercontent.com/58213582/230131524-5bcbf051-1f5c-4e38-a640-d5a628ebd058.png" height="500" />
+  &nbsp;&nbsp;
+  <img src="https://github.com/M1estere/TVP_Labs/assets/58213582/769d1716-6856-41c9-ba6c-9b036ee88a4f" height="300" />
+  &nbsp;&nbsp;
 </p>
