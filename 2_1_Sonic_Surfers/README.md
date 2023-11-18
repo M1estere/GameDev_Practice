@@ -11,6 +11,6 @@
   &nbsp;&nbsp;
   <img src="https://user-images.githubusercontent.com/58213582/230131524-5bcbf051-1f5c-4e38-a640-d5a628ebd058.png" height="500" />
   &nbsp;&nbsp;
-  <img src="https://github.com/M1estere/TVP_Labs/assets/58213582/769d1716-6856-41c9-ba6c-9b036ee88a4f" height="300" />
+  <img src="https://github.com/M1estere/TVP_Labs/assets/58213582/8fdf264c-386e-4de3-a353-7fff713bd3f9" height="300" />
   &nbsp;&nbsp;
 </p>
