@@ -27,50 +27,80 @@ public class RedisController : MonoBehaviour
         string str = database.StringGet("test-key");
         print(str);
 
-        SetNewValue(PlayerPrefs.GetString("player_name"), 0);
+        SetUserData();
     }
 
-    public void SetNewValue(string key, int value)
+    private void SetUserData()
     {
-        string str = database.StringGet(key);
+        string username = PlayerPrefs.GetString("player_name");
+        string password = PlayerPrefs.GetString("player_password");
+        DateTime dateTime = DateTime.UtcNow.Date;
+
+        string fieldName = "players:" + username;
+
+        string str = database.HashGet(fieldName, username);
         if (str != null)
         {
-            int score = Int32.Parse(str);
-            if (score > value)
-            {
-                print($"Current score for {key} is more than {value} ({score})");
-                return;
-            } else
-            {
-                print($"Set score for {key} to {value} from {score}");
-                database.StringSet(key, value);
-                return;
-            }
+            SetNewValue(username, 0);
+            return;
         }
 
-        database.StringSet(key, value);
-        // print($"Set score for {key} to {value}");
+        HashEntry[] entries = new HashEntry[3];
+        entries[0] = new HashEntry("username", username);
+        entries[1] = new HashEntry("password", password);
+        entries[2] = new HashEntry("last_login_date", dateTime.ToString("yyyy-MM-dd"));
+
+        database.HashSet(fieldName, entries);
+        SetNewValue(username, 0);
     }
 
-    public string GetValue(string key) => database.StringGet(key);
+    public void SetNewValue(string username, int value)
+    {
+        if (database.HashExists("score-hash", username) == false) 
+        {
+            print($"Set default score (0) for {username}");
 
-    public Dictionary<string, int> GetAllValuesFromFolder(string folderName)
+            database.HashSet("score-hash", username, value);
+            return; 
+        }
+        int score = Int32.Parse(database.HashGet("score-hash", username).ToString());
+        print(score);
+
+        if (score > value)
+        {
+            print($"Current score for {username} is more than {value} ({score})");
+            return;
+        } else
+        {
+            print($"Set score for {username} to {value} from {score}");
+
+            database.HashSet("score-hash", username, value);
+            return;
+        }
+    }
+
+    public string GetValue(string key) => database.HashGet("score-hash", key);
+
+    public (Dictionary<string, int>, int) GetAllValuesFromFolder()
     {
         Dictionary<string, int> resultsDict = new ();
+        int currentPlayerIndex = 0;
 
-        RedisKey[] keys = _conn.GetServer(_conn.GetEndPoints().First()).Keys(database.Database, "*").ToArray();
-        foreach (var key in keys)
+        HashEntry[] entries = database.HashGetAll("score-hash");
+        int i = 0;
+        foreach (HashEntry key in entries)
         {
-            if (KeyCorrect(folderName, key))
-            {
-                string nameKey = key.ToString().Replace($"{folderName}:", "").Trim();
-                int value = ProcessValue(database.StringGet(key));
+            int value = Int32.Parse(key.Value.ToString());
 
-                resultsDict.Add(nameKey, value);
-            }
+            if (key.Name == PlayerPrefs.GetString("player_name"))
+                currentPlayerIndex = i;
+
+            resultsDict.Add(key.Name, value);
+
+            i++;
         }
 
-        return resultsDict;
+        return (resultsDict, currentPlayerIndex);
     }
 
     private bool KeyCorrect(string format, string key)
