@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19bc605d83885c344855d0deb73d29c1, type: 3}
+  m_Name: Wassup
+  m_EditorClassIdentifier: 
+  <MessageTranslateKey>k__BackingField: dialogue_intro
+  <UserResponses>k__BackingField:
+  - <ResponseTranslateKey>k__BackingField: dialogue_scared_tapping
+    <ResponseNode>k__BackingField: {fileID: 11400000, guid: 4b8d16e0cb99d3441b40ad3ee70e4184, type: 2}
+  - <ResponseTranslateKey>k__BackingField: dialogue_fine_hehe
+    <ResponseNode>k__BackingField: {fileID: 11400000, guid: e280912cc0333034c853a05452e236a6, type: 2}
